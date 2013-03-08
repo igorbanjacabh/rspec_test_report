@@ -1,8 +1,7 @@
-rspec_test_report
-=================
+rspec_test_report: Web app used for rspec test reports
+======================================================
 
-Web app used for rspec test reports
-This project is direclty related to https://github.com/ATLANTBH/rspec_test_report and uses its database from which it pulls the results and shows them on web app dashboard.
+This project is directly related to https://github.com/ATLANTBH/rspec and uses its database from which it pulls the results and shows them on web app dashboard.
 
 Following steps needed fo installation:
 

@@ -1,0 +1,10 @@
+<div class="group">
+  <%= f.label :suite %><%= f.error_message_on :suite %>
+  <%= f.text_field :suite, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+
+<div class="group navform wat-cf">
+  <%= f.submit pat(:save), :class => :button %>
+  <%= f.submit pat(:cancel), :onclick => "window.location='#{url(:test_suites, :index)}';return false", :class => :button %>
+</div>

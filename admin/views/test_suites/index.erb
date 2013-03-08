@@ -1,0 +1,37 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to pat("Test suites summary") %></li>
+      <!--<li><%= link_to pat(:new), url(:test_suites, :new) %></li>-->
+    </ul>
+  </div>
+  <div class="content">
+    <h2 class="title"><%= pat(:all) %> <% mt(:test_suites) %></h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th><!--<%= mat(:test_suite, :id) %></th>-->
+          <th><%= mat(:test_suite, :suite) %></th>
+          <th><%= mat(:test_suite, :created_at) %></th>
+          <th><%= mat(:test_suite, :updated_at) %></th>
+        </tr>
+        <% @test_suites.each do |test_suite| %>
+        <tr>
+          <td><!--<%= test_suite.id %></td>-->
+          <td><%= test_suite.suite %></td>
+          <td><%= test_suite.created_at %></td>
+          <td><%= test_suite.updated_at %></td>
+          <!--<td class="last">
+            <%= button_to pat(:edit), url(:test_suites, :edit, :id => test_suite.id), :method => :get, :class => :button_to %> |
+            <%= button_to pat(:delete), url(:test_suites, :destroy, :id => test_suite.id), :method => :delete, :class => :button_to, :onsubmit => "return confirm('#{pat(:confirm)}')" %>
+          </td>-->
+        </tr>
+        <% end %>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<% content_for :sidebar, partial("base/sidebar") %>-->

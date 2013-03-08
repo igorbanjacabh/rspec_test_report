@@ -1,0 +1,52 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to pat("Test runs summary") %></li>
+      <!--<li><%= link_to pat(:new), url(:test_runs, :new) %></li>-->
+    </ul>
+  </div>
+  <div class="content">
+    <h2 class="title"><%= pat(:all) %> <% mt(:test_runs) %></h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first">
+          <th><%= mat(:test_run, "Test run") %></th>
+          <th><%= mat(:test_run, :build) %></th>          
+          <th><%= mat(:test_run, :computer_name) %></th>
+          <th><%= mat(:test_run, "Execution started at") %></th>
+          <th><%= mat(:test_run, "Execution finished at") %></th>
+          <!--<th><%= mat(:test_run, :test_suites_id) %></th>-->
+          <th><%= mat(:test_run, :example_count) %></th>
+          <th><%= mat(:test_run, :failure_count) %></th>
+          <th><%= mat(:test_run, :pending_count) %></th>
+          <th class="last"><%= mat(:test_run, :duration) %></th>
+          <!--<th class="last">&nbsp;</th>-->
+        </tr>
+        <% @test_runs.each do |test_run| %>
+        <tr>
+          <td class="first">
+          <td><%= link_to pat("#{test_run.id}"), url(:test_cases, :specific, {:test_run => test_run.id}) %></td>
+          <td><%= test_run.build %></td>       
+          <td><%= test_run.computer_name %></td>
+          <td><%= test_run.created_at %></td>
+          <td><%= test_run.updated_at %></td>
+          <!--<td><%= test_run.test_suites_id %></td>-->
+          <td><%= test_run.example_count %></td>
+          <td><%= test_run.failure_count %></td>
+          <td><%= test_run.pending_count %></td>
+          <td><%= test_run.duration %></td>
+          <!--<td class="last">
+            <%= button_to pat(:edit), url(:test_runs, :edit, :id => test_run.id), :method => :get, :class => :button_to %> |
+            <%= button_to pat(:delete), url(:test_runs, :destroy, :id => test_run.id), :method => :delete, :class => :button_to, :onsubmit => "return confirm('#{pat(:confirm)}')" %>
+          </td>-->
+        </tr>
+        <% end %>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :sidebar, partial("base/sidebar") %>

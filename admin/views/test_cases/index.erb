@@ -1,0 +1,56 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to pat("All results summary"), url(:test_cases, :index) %></li>
+      <li><%= link_to pat("Latest results summary"), url(:test_cases, :latest) %></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h2 class="title"><%= pat("All results summary") %> <% mt(:test_cases) %></h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first"><!--<%= mat(:test_case, :id) %></th>-->
+          <th><%= mat(:test_case, :test_group) %></th>
+          <th><%= mat(:test_case, :context) %></th>
+          <th><%= mat(:test_case, :description) %></th>
+          <th><%= mat(:test_case, :execution_result) %></th>
+          <th><%= mat(:test_case, :exception) %></th>
+          <th><%= mat(:test_case, :pending_message) %></th>
+          <th><%= mat(:test_case, :backtrace) %></th>
+          <th><%= mat(:test_case, :metadata) %></th>
+          <th><%= mat(:test_case, "Test run") %></th>
+          <th><%= mat(:test_case, :duration) %></th>          
+          <!--<th class="last">&nbsp;</th>-->
+        </tr>
+        <% @test_cases.each do |test_case| %>
+        <% @cell_color = "#33CC33" if test_case.execution_result.include? "passed" %>
+        <% @cell_color = "#EB3333" if test_case.execution_result.include? "failed" %>
+        <tr>
+          <td class="first"><!--<%= test_case.id %></td>-->
+          <td><%= test_case.test_group %></td>
+          <td><%= test_case.context %></td>
+          <td><%= test_case.description %></td>
+          <td bgcolor=<%= @cell_color %>><%= test_case.execution_result %></td>
+          <td><%= test_case.exception %></td>
+          <td><%= test_case.pending_message %></td>
+          <td><%= test_case.backtrace %></td>
+          <td><%= test_case.metadata %></td>
+          <td><%= test_case.test_runs_id %></td>
+          <td><%= test_case.duration %></td>       
+          <!--<td class="last">
+            <%= button_to pat(:edit), url(:test_cases, :edit, :id => test_case.id), :method => :get, :class => :button_to %> |
+            <%= button_to pat(:delete), url(:test_cases, :destroy, :id => test_case.id), :method => :delete, :class => :button_to, :onsubmit => "return confirm('#{pat(:confirm)}')" %>
+          </td>-->
+        </tr>
+        <% end %>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="digg_pagination">
+          <%= will_paginate @test_cases, :container => false %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :sidebar, partial("base/sidebar") %>

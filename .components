@@ -1,0 +1,8 @@
+--- 
+:orm: activerecord
+:mock: rr
+:admin_renderer: erb
+:renderer: erb
+:stylesheet: sass
+:test: rspec
+:script: jquery

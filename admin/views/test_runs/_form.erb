@@ -1,0 +1,40 @@
+<div class="group">
+  <%= f.label :duration %><%= f.error_message_on :duration %>
+  <%= f.text_field :duration, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :example_count %><%= f.error_message_on :example_count %>
+  <%= f.text_field :example_count, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :failure_count %><%= f.error_message_on :failure_count %>
+  <%= f.text_field :failure_count, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :pending_count %><%= f.error_message_on :pending_count %>
+  <%= f.text_field :pending_count, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :build %><%= f.error_message_on :build %>
+  <%= f.text_field :build, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :computer_name %><%= f.error_message_on :computer_name %>
+  <%= f.text_field :computer_name, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :test_suites_id %><%= f.error_message_on :test_suites_id %>
+  <%= f.text_field :test_suites_id, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+
+<div class="group navform wat-cf">
+  <%= f.submit pat(:save), :class => :button %>
+  <%= f.submit pat(:cancel), :onclick => "window.location='#{url(:test_runs, :index)}';return false", :class => :button %>
+</div>

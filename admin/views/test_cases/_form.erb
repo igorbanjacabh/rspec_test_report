@@ -1,0 +1,55 @@
+<div class="group">
+  <%= f.label :test_group %><%= f.error_message_on :test_group %>
+  <%= f.text_field :test_group, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :context %><%= f.error_message_on :context %>
+  <%= f.text_field :context, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :description %><%= f.error_message_on :description %>
+  <%= f.text_field :description, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :execution_result %><%= f.error_message_on :execution_result %>
+  <%= f.text_field :execution_result, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :exception %><%= f.error_message_on :exception %>
+  <%= f.text_field :exception, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :pending_message %><%= f.error_message_on :pending_message %>
+  <%= f.text_field :pending_message, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :duration %><%= f.error_message_on :duration %>
+  <%= f.text_field :duration, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :backtrace %><%= f.error_message_on :backtrace %>
+  <%= f.text_area :backtrace, :class => :text_area %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :metadata %><%= f.error_message_on :metadata %>
+  <%= f.text_area :metadata, :class => :text_area %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :test_runs_id %><%= f.error_message_on :test_runs_id %>
+  <%= f.text_field :test_runs_id, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+
+<div class="group navform wat-cf">
+  <%= f.submit pat(:save), :class => :button %>
+  <%= f.submit pat(:cancel), :onclick => "window.location='#{url(:test_cases, :index)}';return false", :class => :button %>
+</div>

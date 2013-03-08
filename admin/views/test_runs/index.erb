@@ -20,11 +20,14 @@
           <th><%= mat(:test_run, :example_count) %></th>
           <th><%= mat(:test_run, :failure_count) %></th>
           <th><%= mat(:test_run, :pending_count) %></th>
+          <th><%= mat(:test_run, "Success rate") %></th>
           <th class="last"><%= mat(:test_run, :duration) %></th>
           <!--<th class="last">&nbsp;</th>-->
         </tr>
         <% @test_runs.each do |test_run| %>
         <tr>
+          <% @success_rate = ((test_run.example_count.to_i - test_run.failure_count.to_i).to_f/test_run.example_count.to_f)*100 %>
+          <% @formatted_rate = sprintf("%.2f", @success_rate) %>
           <td class="first">
           <td><%= link_to pat("#{test_run.id}"), url(:test_cases, :specific, {:test_run => test_run.id}) %></td>
           <td><%= test_run.build %></td>       
@@ -35,6 +38,7 @@
           <td><%= test_run.example_count %></td>
           <td><%= test_run.failure_count %></td>
           <td><%= test_run.pending_count %></td>
+          <td><%= @success_rate %></td>
           <td><%= test_run.duration %></td>
           <!--<td class="last">
             <%= button_to pat(:edit), url(:test_runs, :edit, :id => test_run.id), :method => :get, :class => :button_to %> |

@@ -8,7 +8,7 @@
      :database  => 'rspec_test_report',
      :pool      => 5,
      :username  => 'postgres',
-     :password  => 'bj3011sa$',
+     :password  => 'pass',
      :host      => 'localhost'
    }
 

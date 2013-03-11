@@ -1,7 +1,7 @@
 Admin.controllers :test_runs do
 
   get :index do
-    @test_runs = TestRun.last(10).reverse
+    @test_runs = TestRun.paginate(:page => params[:page], :per_page => 10).last(10).reverse
     render 'test_runs/index'
   end
 

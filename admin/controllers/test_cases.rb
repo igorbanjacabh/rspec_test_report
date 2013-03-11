@@ -1,7 +1,9 @@
 Admin.controllers :test_cases do
 
   get :index do
-    @test_cases = TestCase.paginate(:page => params[:page], :per_page => 10)
+    query = "select tc.*, tr.build from test_cases tc INNER JOIN test_runs tr on tc.test_runs_id = tr.id order by tc.updated_at desc, tr.build desc, tc.updated_at asc"
+    @results = TestCase.find_by_sql(query)
+    @test_cases = @results.paginate(:page => params[:page], :per_page => 10)
     render 'test_cases/index'
   end
 
@@ -13,8 +15,9 @@ Admin.controllers :test_cases do
   end
 
   get :specific do
-    @test_cases = TestCase.all(:conditions => { :test_runs_id => params[:test_run] })
-    @test_run_id = params[:test_run]
+    query = "select tc.*, tr.build from test_cases tc INNER JOIN test_runs tr on tc.test_runs_id = tr.id where tr.build = ? order by tc.updated_at asc", params[:build_id]
+    @test_cases = TestCase.find_by_sql(query)
+    @build = params[:build_id]
     render 'test_cases/specific'
   end
 

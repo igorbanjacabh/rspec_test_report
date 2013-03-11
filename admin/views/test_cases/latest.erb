@@ -2,11 +2,11 @@
   <div class="secondary-navigation">
     <ul class="wat-cf">
       <li class="first"><%= link_to pat("All results summary"), url(:test_cases, :index) %></li>
-      <li class="active"><%= link_to pat("Latest results summary"), url(:test_cases, :latest) %></li>
+      <li class="active"><%= link_to pat("Latest results summary (build: #{@test_cases.first.build})"), url(:test_cases, :latest) %></li>
     </ul>
   </div>
   <div class="content">
-    <h2 class="title"><%= pat("Latest results summary") %> <% mt(:test_cases) %></h2>
+    <h2 class="title"><%= pat("Latest results summary (build: #{@test_cases.first.build})") %> <% mt(:test_cases) %></h2>
     <div class="inner">
       <table class="table">
         <tr>
@@ -19,7 +19,7 @@
           <th><%= mat(:test_case, :pending_message) %></th>
           <th><%= mat(:test_case, :backtrace) %></th>
           <th><%= mat(:test_case, :metadata) %></th>
-          <!--<th><%= mat(:test_case, "Test run") %></th>-->        
+          <!--<th><%= mat(:test_case, "Test run") %></th>-->  
           <th><%= mat(:test_case, :duration) %></th>          
         </tr>
         <% @test_cases.each do |test_case| %>

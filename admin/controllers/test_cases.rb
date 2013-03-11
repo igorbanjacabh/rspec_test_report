@@ -9,8 +9,9 @@ Admin.controllers :test_cases do
 
 
   get :latest do
-    @max_value = TestCase.select(:test_runs_id).maximum(:test_runs_id)
-    @test_cases = TestCase.all(:conditions => { :test_runs_id => @max_value })
+    max_value = TestCase.select(:test_runs_id).maximum(:test_runs_id)
+    query = "select tc.*, tr.build from test_cases tc INNER JOIN test_runs tr on tc.test_runs_id = tr.id where test_runs_id = ? order by tc.updated_at asc", max_value
+    @test_cases = TestCase.find_by_sql(query)
     render 'test_cases/latest'
   end
 

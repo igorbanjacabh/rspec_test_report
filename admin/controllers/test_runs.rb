@@ -1,7 +1,11 @@
+require 'will_paginate/array'
+
 Admin.controllers :test_runs do
 
   get :index do
-    @test_runs = TestRun.paginate(:page => params[:page], :per_page => 10).last(10).reverse
+    query = "select * from test_runs order by updated_at desc"
+    @results = TestRun.find_by_sql(query)
+    @test_runs = @results.paginate(:page => params[:page], :per_page => 5)
     render 'test_runs/index'
   end
 

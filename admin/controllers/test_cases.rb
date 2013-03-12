@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 Admin.controllers :test_cases do
 
   get :index do

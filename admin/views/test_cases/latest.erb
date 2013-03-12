@@ -6,7 +6,7 @@
     </ul>
   </div>
   <div class="content">
-    <% @build_name = @test_cases.first.build if !@test_cases.first.build.nil? %>
+    <% @build_name = @test_cases.first.build if @test_cases.any? %>
     <h2 class="title"><%= pat("Latest results summary (build: #{@build_name})") %> <% mt(:test_cases) %></h2>
     <div class="inner">
       <table class="table">

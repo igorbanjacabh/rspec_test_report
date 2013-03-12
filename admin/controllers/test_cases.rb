@@ -3,7 +3,7 @@ require 'will_paginate/array'
 Admin.controllers :test_cases do
 
   get :index do
-    query = "select tc.*, tr.build from test_cases tc INNER JOIN test_runs tr on tc.test_runs_id = tr.id order by tc.updated_at desc, tr.build desc, tc.updated_at asc"
+    query = "select tc.*, tr.build from test_cases tc INNER JOIN test_runs tr on tc.test_runs_id = tr.id order by tr.build desc, tc.updated_at asc"
     @results = TestCase.find_by_sql(query)
     @test_cases = @results.paginate(:page => params[:page], :per_page => 10)
     render 'test_cases/index'

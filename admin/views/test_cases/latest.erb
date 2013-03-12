@@ -6,7 +6,8 @@
     </ul>
   </div>
   <div class="content">
-    <h2 class="title"><%= pat("Latest results summary (build: #{@test_cases.first.build})") %> <% mt(:test_cases) %></h2>
+    <% @build_name = @test_cases.first.build if !@test_cases.first.build.nil? %>
+    <h2 class="title"><%= pat("Latest results summary (build: #{@build_name})") %> <% mt(:test_cases) %></h2>
     <div class="inner">
       <table class="table">
         <tr>

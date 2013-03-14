@@ -3,7 +3,7 @@ require 'will_paginate/array'
 Admin.controllers :test_cases do
 
   get :index do
-    query = "select tc.test_group, min(tr.created_at) as \"execution_start\", max(tr.updated_at) as \"execution_end\", count(tc.test_group) as \"test_steps\", sum(tc.duration) as \"duration\", tr.build
+    query = "select tc.test_group, count(tc.test_group) as \"test_steps\", sum(tc.duration) as \"duration\", tr.build
       from test_cases tc INNER JOIN test_runs tr on tc.test_runs_id = tr.id
       where tr.build = ?
       group by tc.test_group, tr.build", params[:build_id]

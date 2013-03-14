@@ -1,8 +1,9 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li class="first"><%= link_to pat("All results summary"), url(:test_cases, :index) %></li>
+      <li class="first"><%= link_to pat("Test"), url(:test_cases, :index) %></li>
       <li class="active"><%= link_to pat("Latest results summary"), url(:test_cases, :latest) %></li>
+      <li><%= link_to pat("All results summary"), url(:test_cases, :all) %></li>    
     </ul>
   </div>
   <div class="content">

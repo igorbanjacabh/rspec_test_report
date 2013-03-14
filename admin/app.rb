@@ -34,8 +34,8 @@ class Admin < Padrino::Application
   end
 
   access_control.roles_for :admin do |role|
-    role.project_module :test_cases, '/test_cases'
     role.project_module :test_runs, '/test_runs'
+    #role.project_module :test_cases, '/test_cases'    
     #role.project_module :test_suites, '/test_suites'
     #role.project_module :accounts, '/accounts'
   end

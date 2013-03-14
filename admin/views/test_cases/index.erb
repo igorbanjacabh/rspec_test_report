@@ -1,49 +1,35 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li class="first active"><%= link_to pat("All results summary"), url(:test_cases, :index) %></li>
-      <li><%= link_to pat("Latest results summary"), url(:test_cases, :latest) %></li>
+      <li><%= link_to pat("Test runs summary"), url(:test_runs, :index) %></li>
+      <li class="first active"><%= link_to pat("Test cases for build #{@build_name}"), url(:test_cases, :index, {:build_id => @build_name}) %></li> 
     </ul>
   </div>
   <div class="content">
-    <h2 class="title"><%= pat("All results summary") %> <% mt(:test_cases) %></h2>
+    <h2 class="title"><!--<%= pat("Test cases for build #{@build_name}") %> <% mt(:test_cases) %>--></h2>
     <div class="inner">
       <table class="table">
         <tr>
           <th class="first">
           <th><%= mat(:test_case, :test_group) %></th>
-          <th><%= mat(:test_case, :context) %></th>
-          <th><%= mat(:test_case, :description) %></th>
-          <th><%= mat(:test_case, :execution_result) %></th>
-          <th><%= mat(:test_case, :exception) %></th>
-          <th><%= mat(:test_case, :pending_message) %></th>
-          <th><%= mat(:test_case, :backtrace) %></th>
-          <!--<th><%= mat(:test_case, "Test run") %></th>-->
-          <th><%= mat(:test_case, "Build") %></th>
+          <th><%= mat(:test_case, "Test steps") %></th>
+          <th><%= mat(:test_case, "Execution started at") %></th>
+          <th><%= mat(:test_case, "Execution finished at") %></th>
           <th><%= mat(:test_case, :duration) %></th>          
         </tr>
         <% @test_cases.each do |test_case| %>
-        <% @cell_color = "#33CC33" if test_case.execution_result.include? "passed" %>
-        <% @cell_color = "#EB3333" if test_case.execution_result.include? "failed" %>
         <tr>
           <td class="first">
-          <td><%= test_case.test_group %></td>
-          <td><%= test_case.context %></td>
-          <td><%= test_case.description %></td>
-          <td bgcolor=<%= @cell_color %>><%= test_case.execution_result %></td>
-          <td><%= test_case.exception %></td>
-          <td><%= test_case.pending_message %></td>
-          <td><%= test_case.backtrace %></td>
-          <!--<td><%= test_case.test_runs_id %></td>-->
-          <td><%= test_case.build %></td>
+          <td><%= link_to pat("#{test_case.test_group}"), url(:test_cases, :specific, {:test_group => test_case.test_group, :build_id => @build_name}) %></td>
+          <td><%= test_case.test_steps %></td>
+          <td><%= test_case.execution_start %></td>
+          <td><%= test_case.execution_end %></td>
           <td><%= test_case.duration %></td>
         </tr>
         <% end %>
       </table>
       <div class="actions-bar wat-cf">
-        <div class="digg_pagination">
-          <%= will_paginate @test_cases, :container => false %>
-        </div>
+        <div class="actions"></div>
       </div>
     </div>
   </div>

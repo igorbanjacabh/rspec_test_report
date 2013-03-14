@@ -5,7 +5,7 @@ Admin.controllers :test_runs do
   get :index do
     query = "select * from test_runs order by updated_at desc"
     @results = TestRun.find_by_sql(query)
-    @test_runs = @results.paginate(:page => params[:page], :per_page => 5)
+    @test_runs = @results.paginate(:page => params[:page], :per_page => 10)
     render 'test_runs/index'
   end
 

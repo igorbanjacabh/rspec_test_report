@@ -1,40 +1,36 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li class="first"><%= link_to pat("All results summary"), url(:test_cases, :index) %></li>
-      <li class><%= link_to pat("Latest results summary"), url(:test_cases, :latest) %></li>     
-      <li class="active"><%= link_to pat("Results summary for build: #{@build}"), url(:test_cases, :specific) %></li>
+      <li><%= link_to pat("Test runs summary"), url(:test_runs, :index) %></li>
+      <li><%= link_to pat("Test cases for build #{@build_name}"), url(:test_cases, :index, {:build_id => @build_name}) %></li> 
+      <li class="first active"><%= link_to pat("#{@test_group}"), url(:test_cases, :specific, {:test_group => @test_group, :build_id => @build_name}) %></li>
     </ul>
   </div>
   <div class="content">
-    <h2 class="title"><%= pat("Results summary for build: #{@build}") %> <% mt(:test_cases) %></h2>
+    <h2 class="title"><!--<%= pat("#{@test_group}") %> <% mt(:test_cases) %>--></h2>
     <div class="inner">
       <table class="table">
         <tr>
           <th class="first">
-          <th><%= mat(:test_case, :test_group) %></th>
           <th><%= mat(:test_case, :context) %></th>
           <th><%= mat(:test_case, :description) %></th>
           <th><%= mat(:test_case, :execution_result) %></th>
           <th><%= mat(:test_case, :exception) %></th>
           <th><%= mat(:test_case, :pending_message) %></th>
           <th><%= mat(:test_case, :backtrace) %></th>
-          <!--<th><%= mat(:test_case, "Test run") %></th>-->         
-          <th><%= mat(:test_case, :duration) %></th>         
+          <th><%= mat(:test_case, :duration) %></th>          
         </tr>
         <% @test_cases.each do |test_case| %>
         <% @cell_color = "#33CC33" if test_case.execution_result.include? "passed" %>
         <% @cell_color = "#EB3333" if test_case.execution_result.include? "failed" %>
         <tr>
           <td class="first">
-          <td><%= test_case.test_group %></td>
           <td><%= test_case.context %></td>
           <td><%= test_case.description %></td>
-          <td bgcolor=<%= @cell_color %>><%= test_case.execution_result %></td>  
+          <td bgcolor=<%= @cell_color %>><%= test_case.execution_result %></td>
           <td><%= test_case.exception %></td>
           <td><%= test_case.pending_message %></td>
           <td><%= test_case.backtrace %></td>
-          <!--<td><%= test_case.test_runs_id %></td>-->
           <td><%= test_case.duration %></td>
         </tr>
         <% end %>

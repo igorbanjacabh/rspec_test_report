@@ -5,12 +5,11 @@
     </ul>
   </div>
   <div class="content">
-    <h2 class="title"><%= pat(:all) %> <% mt(:test_runs) %></h2>
+    <h2 class="title"><!--<%= pat(:all) %> <% mt(:test_runs) %>--></h2>
     <div class="inner">
       <table class="table">
         <tr>
           <th class="first">
-          <!--<th><%= mat(:test_run, "Test run") %></th>-->
           <th><%= mat(:test_run, :build) %></th>          
           <th><%= mat(:test_run, :computer_name) %></th>
           <th><%= mat(:test_run, "Execution started at") %></th>
@@ -26,8 +25,7 @@
           <% @success_rate = ((test_run.example_count.to_i - test_run.failure_count.to_i).to_f/test_run.example_count.to_f)*100 %>
           <% @formatted_rate = sprintf("%.2f", @success_rate) %>
           <td class="first">
-          <!--<td><%= link_to pat("#{test_run.id}"), url(:test_cases, :specific, {:test_run => test_run.id}) %></td>-->
-          <td><%= link_to pat("#{test_run.build}"), url(:test_cases, :specific, {:build_id => test_run.build}) %></td>       
+          <td><%= link_to pat("#{test_run.build}"), url(:test_cases, :index, {:build_id => test_run.build}) %></td>       
           <td><%= test_run.computer_name %></td>
           <td><%= test_run.created_at %></td>
           <td><%= test_run.updated_at %></td>

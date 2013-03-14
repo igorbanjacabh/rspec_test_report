@@ -1,0 +1,36 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li><%= link_to pat("Test runs summary"), url(:test_runs, :index) %></li>
+      <li class="first active"><%= link_to pat("Test cases for build #{@build_name}"), url(:test_cases, :all, {:build_id => @build_name}) %></li> 
+    </ul>
+  </div>
+  <div class="content">
+    <h2 class="title"><!--<%= pat("Test cases for build #{@build_name}") %> <% mt(:test_cases) %>--></h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first">
+          <th><%= mat(:test_case, :test_group) %></th>
+          <th><%= mat(:test_case, "Test steps") %></th>
+          <th><%= mat(:test_case, "Execution started at") %></th>
+          <th><%= mat(:test_case, "Execution finished at") %></th>
+          <th><%= mat(:test_case, :duration) %></th>          
+        </tr>
+        <% @test_cases.each do |test_case| %>
+        <tr>
+          <td class="first">
+          <td><%= link_to pat("#{test_case.test_group}"), url(:test_cases, :specific, {:test_group => test_case.test_group, :build_id => @build_name}) %></td>
+          <td><%= test_case.test_steps %></td>
+          <td><%= test_case.execution_start %></td>
+          <td><%= test_case.execution_end %></td>
+          <td><%= test_case.duration %></td>
+        </tr>
+        <% end %>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions"></div>
+      </div>
+    </div>
+  </div>
+</div>

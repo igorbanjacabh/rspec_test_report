@@ -6,9 +6,30 @@ Admin.controllers :test_cases do
     query = "select tc.test_group, count(tc.test_group) as \"test_steps\", sum(tc.duration) as \"duration\", tr.build
       from test_cases tc INNER JOIN test_runs tr on tc.test_runs_id = tr.id
       where tr.build = ?
-      group by tc.test_group, tr.build", params[:build_id]
+      group by tc.test_group, tr.build order by tc.test_group", params[:build_id]
     @test_cases = TestCase.find_by_sql(query)
     @build_name = params[:build_id]
+
+    @pass_array = Array.new()
+    @fail_array = Array.new()
+
+    @test_cases.each do |test_case|
+      pass_subquery = "select count(tc.execution_result) as \"pass_count\" from test_cases tc INNER JOIN test_runs tr on tc.test_runs_id = tr.id where tr.build = ? and tc.test_group = ? and tc.execution_result = ?", params[:build_id], test_case.test_group, "passed"
+      pass_counts = TestCase.find_by_sql(pass_subquery)
+      pass_counts.each do |count|
+        @pass_array << count.pass_count
+      end
+
+      fail_subquery = "select count(tc.execution_result) as \"fail_count\" from test_cases tc INNER JOIN test_runs tr on tc.test_runs_id = tr.id where tr.build = ? and tc.test_group = ? and tc.execution_result = ?", params[:build_id], test_case.test_group, "failed"
+      fail_counts = TestCase.find_by_sql(fail_subquery)
+      fail_counts.each do |count|
+        @fail_array << count.fail_count
+      end
+    end
+
+    puts "Passed: ", @pass_array 
+    puts "Failed: ", @fail_array
+
     render 'test_cases/index'
   end
 

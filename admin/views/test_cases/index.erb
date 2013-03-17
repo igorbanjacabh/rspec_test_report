@@ -13,13 +13,21 @@
           <th class="first">
           <th><%= mat(:test_case, :test_group) %></th>
           <th><%= mat(:test_case, "Test steps") %></th>
+          <th><%= mat(:test_case, "Steps passed") %></th>
+          <th><%= mat(:test_case, "Steps failed") %></th>
+          <th><%= mat(:test_case, "Success rate") %></th>
           <th><%= mat(:test_case, :duration) %></th>          
         </tr>
-        <% @test_cases.each do |test_case| %>
+        <% @test_cases.each_with_index do |test_case, index| %>
+        <% @success_rate = ((test_case.test_steps.to_i - @fail_array[index].to_i).to_f/test_case.test_steps.to_f)*100 %>
+        <% @formatted_rate = sprintf("%.2f", @success_rate) %>
         <tr>
           <td class="first">
           <td><%= link_to pat("#{test_case.test_group}"), url(:test_cases, :specific, {:test_group => test_case.test_group, :build_id => @build_name}) %></td>
           <td><%= test_case.test_steps %></td>
+          <td><%= @pass_array[index] %></td>
+          <td><%= @fail_array[index] %></td>
+          <td><%= @formatted_rate %></td>
           <td><%= test_case.duration %></td>
         </tr>
         <% end %>

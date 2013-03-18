@@ -26,10 +26,7 @@ Admin.controllers :test_cases do
         @fail_array << count.fail_count
       end
     end
-
-    puts "Passed: ", @pass_array 
-    puts "Failed: ", @fail_array
-
+    
     render 'test_cases/index'
   end
 

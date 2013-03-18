@@ -23,6 +23,7 @@
         <% @formatted_rate = sprintf("%.2f", @success_rate) %>
         <% @cell_color = "#33CC33" if @success_rate == 100.00 %>
         <% @cell_color = "#EB3333" if @success_rate < 100.00 %>
+        <% @formatted_duration = sprintf("%.2f", test_run.duration.to_f) %>
         <tr>
           <td class="first">
           <td><%= link_to pat("#{test_case.test_group}"), url(:test_cases, :specific, {:test_group => test_case.test_group, :build_id => @build_name}) %></td>
@@ -30,7 +31,7 @@
           <td><%= @pass_array[index] %></td>
           <td><%= @fail_array[index] %></td>
           <td bgcolor=<%= @cell_color %>><%= @formatted_rate %></td>
-          <td><%= test_case.duration %></td>
+          <td><%= @formatted_duration + "s" %></td>
         </tr>
         <% end %>
       </table>

@@ -21,9 +21,11 @@
           <th class="last"><%= mat(:test_run, :duration) %></th>
         </tr>
         <% @test_runs.each do |test_run| %>
+        <% @success_rate = ((test_run.example_count.to_i - test_run.failure_count.to_i).to_f/test_run.example_count.to_f)*100 %>
+        <% @formatted_rate = sprintf("%.2f", @success_rate) %>
+        <% @cell_color = "#33CC33" if @success_rate == 100.00 %>
+        <% @cell_color = "#EB3333" if @success_rate < 100.00 %>
         <tr>
-          <% @success_rate = ((test_run.example_count.to_i - test_run.failure_count.to_i).to_f/test_run.example_count.to_f)*100 %>
-          <% @formatted_rate = sprintf("%.2f", @success_rate) %>
           <td class="first">
           <td><%= link_to pat("#{test_run.build}"), url(:test_cases, :index, {:build_id => test_run.build}) %></td>       
           <td><%= test_run.computer_name %></td>
@@ -32,7 +34,7 @@
           <td><%= test_run.example_count %></td>
           <td><%= test_run.failure_count %></td>
           <td><%= test_run.pending_count %></td>
-          <td><%= @formatted_rate %></td>
+          <td bgcolor=<%= @cell_color %>><%= @formatted_rate %></td>
           <td><%= test_run.duration %></td>
         </tr>
         <% end %>

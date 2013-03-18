@@ -21,13 +21,15 @@
         <% @test_cases.each_with_index do |test_case, index| %>
         <% @success_rate = ((test_case.test_steps.to_i - @fail_array[index].to_i).to_f/test_case.test_steps.to_f)*100 %>
         <% @formatted_rate = sprintf("%.2f", @success_rate) %>
+        <% @cell_color = "#33CC33" if @success_rate == 100.00 %>
+        <% @cell_color = "#EB3333" if @success_rate < 100.00 %>
         <tr>
           <td class="first">
           <td><%= link_to pat("#{test_case.test_group}"), url(:test_cases, :specific, {:test_group => test_case.test_group, :build_id => @build_name}) %></td>
           <td><%= test_case.test_steps %></td>
           <td><%= @pass_array[index] %></td>
           <td><%= @fail_array[index] %></td>
-          <td><%= @formatted_rate %></td>
+          <td bgcolor=<%= @cell_color %>><%= @formatted_rate %></td>
           <td><%= test_case.duration %></td>
         </tr>
         <% end %>

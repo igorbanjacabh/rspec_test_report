@@ -23,6 +23,7 @@
         <% @test_cases.each do |test_case| %>
         <% @cell_color = "#33CC33" if test_case.execution_result.include? "passed" %>
         <% @cell_color = "#EB3333" if test_case.execution_result.include? "failed" %>
+        <% @formatted_duration = sprintf("%.2f", test_case.duration.to_f) %>
         <tr>
           <td class="first">
           <td><%= test_case.context %></td>
@@ -31,7 +32,7 @@
           <td><%= test_case.exception %></td>
           <td><%= test_case.pending_message %></td>
           <td><%= test_case.backtrace %></td>
-          <td><%= test_case.duration %></td>
+          <td><%= @formatted_duration + "s" %></td>
         </tr>
         <% end %>
       </table>

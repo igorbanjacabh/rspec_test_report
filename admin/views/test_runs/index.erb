@@ -11,7 +11,7 @@
         <tr>
           <th class="first">
           <th><%= mat(:test_run, :build) %></th>          
-          <th><%= mat(:test_run, :computer_name) %></th>
+          <!--<th><%= mat(:test_run, :computer_name) %></th>-->
           <th><%= mat(:test_run, "Execution started at") %></th>
           <th><%= mat(:test_run, "Execution finished at") %></th>
           <th><%= mat(:test_run, :example_count) %></th>
@@ -29,7 +29,7 @@
         <tr>
           <td class="first">
           <td><%= link_to pat("#{test_run.build}"), url(:test_cases, :index, {:build_id => test_run.build}) %></td>       
-          <td><%= test_run.computer_name %></td>
+          <!--<td><%= test_run.computer_name %></td>-->
           <td><%= test_run.created_at %></td>
           <td><%= test_run.updated_at %></td>
           <td><%= test_run.example_count %></td>

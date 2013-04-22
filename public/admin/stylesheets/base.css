@@ -143,3 +143,7 @@ ul.list li .item .avatar{float:left;margin:0 5px 5px 0;width:30px;height:30px;}
     height: 1%; }
   *:first-child + html .digg_pagination {
     overflow: hidden; }
+
+#dialog-message{
+  display:none;
+}

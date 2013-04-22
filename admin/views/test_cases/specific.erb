@@ -24,6 +24,7 @@
         <% @test_cases.each do |test_case| %>
         <% @cell_color = "#33CC33" if test_case.execution_result.include? "passed" %>
         <% @cell_color = "#EB3333" if test_case.execution_result.include? "failed" %>
+        <% code_snippet = "Show code snippet" if test_case.execution_result.include? "failed" %>
         <% @formatted_duration = sprintf("%.2f", test_case.duration.to_f) %>
         <tr>
           <td class="first">
@@ -33,7 +34,8 @@
           <td><%= test_case.exception %></td>
           <td><%= test_case.pending_message %></td>
           <td><%= test_case.backtrace %></td>
-          <td><%= test_case.metadata %></td>
+          <td><a href="javascript:void(0)" data-value='<%= test_case.metadata %>' class="stacktrace"><%= code_snippet %></a>
+          </td>
           <td><%= @formatted_duration + "s" %></td>
         </tr>
         <% end %>
@@ -44,3 +46,28 @@
     </div>
   </div>
 </div>
+<div class="dialog-message" title="Code snippet" style="display:none;">
+</div>
+
+<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" %>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+<script type="text/javascript">
+  $(function() {
+
+    $(".dialog-message").dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+        }
+      },
+      minWidth: 900,
+      autoOpen: false
+      });
+
+    $(".stacktrace").on("click", function(){
+      $(".dialog-message").html($(this).data('value'));
+      $(".dialog-message").dialog( "open" );
+    });
+  });
+</script>

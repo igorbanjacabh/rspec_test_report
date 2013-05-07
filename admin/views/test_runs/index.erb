@@ -35,7 +35,7 @@
           <td><%= test_run.example_count %></td>
           <td><%= test_run.failure_count %></td>
           <td><%= test_run.pending_count %></td>
-          <td bgcolor=<%= @cell_color %>><%= @formatted_rate %></td>
+          <td bgcolor=<%= @cell_color %>><%= @formatted_rate + "%" %></td>
           <td><%= @formatted_duration + "s" %></td>
         </tr>
         <% end %>

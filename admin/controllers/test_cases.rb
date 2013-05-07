@@ -26,7 +26,6 @@ Admin.controllers :test_cases do
         @fail_array << count.fail_count
       end
     end
-    
     render 'test_cases/index'
   end
 

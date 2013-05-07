@@ -34,3 +34,6 @@ gem 'padrino', '0.10.7'
 
 # Pagination gem
 gem 'will_paginate'
+
+# Google charts gem
+gem 'gchart'

@@ -50,16 +50,27 @@ Admin.controllers :base do
       build_namas_array << test_run.build
     end
 
-    @test_chart = GChart.line :data => success_rate_array.reverse
+    #Build string that represents list of graph dots that will be visible
+    graph_dots = ""
+    build_namas_array.each_with_index do |build, i|
+      graph_dots << "o,3399CC,0,#{i}.0,10.0|"
+    end
+    graph_dots.chop!
+
+    @test_chart = GChart.line :data => success_rate_array.reverse, :extras => { "chg" => "0,10", "chm" => graph_dots }
     @test_chart.title = "Last 10 builds success rate"
     @test_chart.colors = [:green]
-    @test_chart.axis(:left) { |a| a.range = 0..100 }
+    @test_chart.axis(:left) do |a|
+      a.range = 0..100
+    end
     @test_chart.axis(:bottom) do |a| 
       a.labels = build_namas_array.reverse
     end
     @test_chart.width = 963
     @test_chart.height = 250
     @test_chart.entire_background = "F7F7F8"
+
+    puts "URL:", @test_chart.to_url
 
     render "base/index"
   end

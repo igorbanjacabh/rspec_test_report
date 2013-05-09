@@ -9,7 +9,7 @@ Admin.controllers :base do
     @last_test_runs = TestRun.find_by_sql(last_run_query)
 
     @last_test_runs.each do |test_run|
-      if test_run.example_count.nil?
+      if !test_run.example_count.nil?
         success_count = test_run.example_count.to_i - test_run.failure_count.to_i
         @last_build_chart = GChart.pie3d :data => [test_run.failure_count, test_run.pending_count, success_count]
         @last_build_chart.title = "Sum for last build result"

@@ -9,14 +9,24 @@ Admin.controllers :base do
     @last_test_runs = TestRun.find_by_sql(last_run_query)
 
     @last_test_runs.each do |test_run|
-      success_count = test_run.example_count.to_i - test_run.failure_count.to_i
-      @last_build_chart = GChart.pie3d :data => [test_run.failure_count, test_run.pending_count, success_count]
-      @last_build_chart.title = "Sum for last build result"
-      @last_build_chart.colors = [:red, :yellow, :green]
-      @last_build_chart.legend = ["Failed: #{test_run.failure_count}", "Pending: #{test_run.pending_count}", "Pass: #{success_count}"]
-      @last_build_chart.width = 480
-      @last_build_chart.height = 250
-      @last_build_chart.entire_background = "F7F7F8" 
+      if test_run.example_count.nil?
+        success_count = test_run.example_count.to_i - test_run.failure_count.to_i
+        @last_build_chart = GChart.pie3d :data => [test_run.failure_count, test_run.pending_count, success_count]
+        @last_build_chart.title = "Sum for last build result"
+        @last_build_chart.colors = [:red, :yellow, :green]
+        @last_build_chart.legend = ["Failed: #{test_run.failure_count}", "Pending: #{test_run.pending_count}", "Pass: #{success_count}"]
+        @last_build_chart.width = 480
+        @last_build_chart.height = 250
+        @last_build_chart.entire_background = "F7F7F8"
+      else
+        @last_build_chart = GChart.pie3d :data => [100, 100, 100]
+        @last_build_chart.title = "Sum for last build result"
+        @last_build_chart.colors = [:red, :yellow, :green]
+        @last_build_chart.legend = ["Failed: N/A", "Pending: N/A", "Pass: N/A"]
+        @last_build_chart.width = 480
+        @last_build_chart.height = 250
+        @last_build_chart.entire_background = "F7F7F8"
+      end
     end
 
     #Get sum of pass/failed/pending in last 10 runs and display its sum stats on pie3d chart
@@ -46,7 +56,11 @@ Admin.controllers :base do
     build_namas_array = Array.new()
 
     @last_10test_runs.each do |test_run|
-      success_rate_array << ((test_run.example_count.to_i - test_run.failure_count.to_i).to_f/test_run.example_count.to_f)*100
+      if test_run.example_count.nil?
+        success_rate_array << 0
+      else
+        success_rate_array << ((test_run.example_count.to_i - test_run.failure_count.to_i).to_f/test_run.example_count.to_f)*100
+      end
       build_namas_array << test_run.build
     end
 
@@ -57,18 +71,18 @@ Admin.controllers :base do
     end
     graph_dots.chop!
 
-    @test_chart = GChart.line :data => success_rate_array.reverse, :extras => { "chg" => "0,10", "chm" => graph_dots }
-    @test_chart.title = "Last 10 builds success rate"
-    @test_chart.colors = [:green]
-    @test_chart.axis(:left) do |a|
+    @last_10test_runs_graph = GChart.line :data => success_rate_array.reverse, :extras => { "chg" => "0,10", "chm" => graph_dots }
+    @last_10test_runs_graph.title = "Last 10 builds success rate"
+    @last_10test_runs_graph.colors = [:green]
+    @last_10test_runs_graph.axis(:left) do |a|
       a.range = 0..100
     end
-    @test_chart.axis(:bottom) do |a| 
+    @last_10test_runs_graph.axis(:bottom) do |a| 
       a.labels = build_namas_array.reverse
     end
-    @test_chart.width = 963
-    @test_chart.height = 250
-    @test_chart.entire_background = "F7F7F8"
+    @last_10test_runs_graph.width = 963
+    @last_10test_runs_graph.height = 250
+    @last_10test_runs_graph.entire_background = "F7F7F8"
 
     render "base/index"
   end

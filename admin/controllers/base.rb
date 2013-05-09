@@ -70,8 +70,6 @@ Admin.controllers :base do
     @test_chart.height = 250
     @test_chart.entire_background = "F7F7F8"
 
-    puts "URL:", @test_chart.to_url
-
     render "base/index"
   end
 end

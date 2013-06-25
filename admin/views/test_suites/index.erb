@@ -6,20 +6,18 @@
     </ul>
   </div>
   <div class="content">
-    <h2 class="title"><%= pat(:all) %> <% mt(:test_suites) %></h2>
+    <h2 class="title"><!--<%= pat(:all) %> <% mt(:test_suites) %>--></h2>
     <div class="inner">
       <table class="table">
         <tr>
           <th><!--<%= mat(:test_suite, :id) %></th>-->
           <th><%= mat(:test_suite, :suite) %></th>
-          <th><%= mat(:test_suite, :created_at) %></th>
-          <th><%= mat(:test_suite, :updated_at) %></th>
+          <th><%= mat(:test_suite, "last executed") %></th>
         </tr>
         <% @test_suites.each do |test_suite| %>
         <tr>
           <td><!--<%= test_suite.id %></td>-->
-          <td><%= test_suite.suite %></td>
-          <td><%= test_suite.created_at %></td>
+          <td><%= link_to pat("#{test_suite.suite}"), url(:test_runs, :index, {:test_suite => test_suite.suite, :test_suite_id => test_suite.id}) %></td>  
           <td><%= test_suite.updated_at %></td>
           <!--<td class="last">
             <%= button_to pat(:edit), url(:test_suites, :edit, :id => test_suite.id), :method => :get, :class => :button_to %> |

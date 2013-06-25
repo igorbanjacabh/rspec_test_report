@@ -1,7 +1,7 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li class="first active"><%= link_to pat("Test runs summary") %></li>
+      <li class="first active"><%= link_to pat("Test runs summary for #{@test_suite}"), url(:test_runs, :index, {:test_suite => @test_suite}) %></li>
     </ul>
   </div>
   <div class="content">

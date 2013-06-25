@@ -3,9 +3,10 @@ require 'will_paginate/array'
 Admin.controllers :test_runs do
 
   get :index do
-    query = "select * from test_runs order by updated_at desc"
+    query = "select * from test_runs where test_suites_id = ? order by updated_at desc", params[:test_suite_id]
     @results = TestRun.find_by_sql(query)
     @test_runs = @results.paginate(:page => params[:page], :per_page => 10)
+    @test_suite = params[:test_suite]
     render 'test_runs/index'
   end
 

@@ -3,9 +3,12 @@
     <h2 class="title">Test report dashboard</h2>
     <div class="inner"> 
       <div style="border: 2px solid;border-color:#007BA7;margin-right:230px;margin-left:230px;" align="center">
-        <img src="<%= @last_build_chart.to_url %>"/>
-        <img src="<%= @last_10build_chart.to_url %>"/>
-        <img src="<%= @last_10test_runs_graph.to_url %>"/>
+        <img src="<%= @regression_last_build_chart.to_url %>"/>
+        <img src="<%= @regression_last_10build_chart.to_url %>"/>
+        <img src="<%= @regression_last_10test_runs_graph.to_url %>"/>
+        <img src="<%= @smoke_last_build_chart.to_url %>"/>
+        <img src="<%= @smoke_last_10build_chart.to_url %>"/>
+        <img src="<%= @smoke_last_10test_runs_graph.to_url %>"/>
       </div>
     </div>
   </div>

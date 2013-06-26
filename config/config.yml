@@ -1,0 +1,3 @@
+test_suites:
+  regression_suite: "full regression"
+  smoke_suite: "smoke test"

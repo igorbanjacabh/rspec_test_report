@@ -100,10 +100,12 @@ Admin.controllers :base do
     regression_suite_name = @config['test_suites']['regression_suite']
     smoke_suite_name = @config['test_suites']['smoke_suite']
 
+    #Draw regression charts
     @regression_last_build_chart = draw_last_test_run(regression_suite_name)
     @regression_last_10build_chart = draw_last_10_test_runs(regression_suite_name)
     @regression_last_10test_runs_graph = draw_last_10_builds_success_rate(regression_suite_name)
 
+    #Draw smoke charts
     @smoke_last_build_chart = draw_last_test_run(smoke_suite_name)
     @smoke_last_10build_chart = draw_last_10_test_runs(smoke_suite_name)
     @smoke_last_10test_runs_graph = draw_last_10_builds_success_rate(smoke_suite_name)

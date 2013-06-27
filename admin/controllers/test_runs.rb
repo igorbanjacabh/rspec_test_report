@@ -7,6 +7,11 @@ Admin.controllers :test_runs do
     @results = TestRun.find_by_sql(query)
     @test_runs = @results.paginate(:page => params[:page], :per_page => 10)
     @test_suite = params[:test_suite]
+    @test_suite_id = params[:test_suite_id]
+
+    puts "Test suites - Test runs: test_suite ", @test_suite
+    puts "Test suites - Test runs: test_suite_id ", @test_suite_id
+
     render 'test_runs/index'
   end
 

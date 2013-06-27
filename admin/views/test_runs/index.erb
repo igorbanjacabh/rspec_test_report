@@ -1,7 +1,8 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li class="first active"><%= link_to pat("Test runs summary for #{@test_suite}"), url(:test_runs, :index, {:test_suite => @test_suite}) %></li>
+      <li><%= link_to pat("Test suites summary"), url(:test_suites, :index) %></li>
+      <li class="first active"><%= link_to pat("Test runs summary for #{@test_suite}"), url(:test_runs, :index, {:test_suite => @test_suite, :test_suite_id => @test_suite_id}) %></li>
     </ul>
   </div>
   <div class="content">
@@ -28,7 +29,7 @@
         <% @formatted_duration = sprintf("%.2f", test_run.duration.to_f) %>
         <tr>
           <td class="first">
-          <td><%= link_to pat("#{test_run.build}"), url(:test_cases, :index, {:build_id => test_run.build}) %></td>       
+          <td><%= link_to pat("#{test_run.build}"), url(:test_cases, :index, {:build_id => test_run.build, :test_suite => @test_suite, :test_suite_id => @test_suite_id}) %></td>       
           <!--<td><%= test_run.computer_name %></td>-->
           <td><%= test_run.created_at %></td>
           <td><%= test_run.updated_at %></td>

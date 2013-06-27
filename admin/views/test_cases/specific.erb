@@ -1,9 +1,10 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li><%= link_to pat("Test runs summary"), url(:test_runs, :index) %></li>
-      <li><%= link_to pat("Test cases for build #{@build_name}"), url(:test_cases, :index, {:build_id => @build_name}) %></li> 
-      <li class="first active"><%= link_to pat("#{@test_group}"), url(:test_cases, :specific, {:test_group => @test_group, :build_id => @build_name}) %></li>
+      <li><%= link_to pat("Test suites summary"), url(:test_suites, :index) %></li>
+      <li><%= link_to pat("Test runs summary for #{@test_suite}"), url(:test_runs, :index, {:test_suite => @test_suite, :test_suite_id => @test_suite_id}) %></li>
+      <li><%= link_to pat("Test cases for build #{@build_name}"), url(:test_cases, :index, {:build_id => @build_name, :test_suite => @test_suite, :test_suite_id => @test_suite_id}) %></li> 
+      <li class="first active"><%= link_to pat("#{@test_group}"), url(:test_cases, :specific, {:test_group => @test_group, :build_id => @build_name, :test_suite => @test_suite, :test_suite_id => @test_suite_id}) %></li>
     </ul>
   </div>
   <div class="content">

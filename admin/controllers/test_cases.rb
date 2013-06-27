@@ -13,9 +13,6 @@ Admin.controllers :test_cases do
     @test_suite = params[:test_suite]
     @test_suite_id = params[:test_suite_id]
 
-    puts "test suite:", @test_suite
-    puts "test suite id:", @test_suite_id
-
     @pass_array = Array.new()
     @fail_array = Array.new()
 

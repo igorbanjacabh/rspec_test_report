@@ -9,9 +9,6 @@ Admin.controllers :test_runs do
     @test_suite = params[:test_suite]
     @test_suite_id = params[:test_suite_id]
 
-    puts "Test suites - Test runs: test_suite ", @test_suite
-    puts "Test suites - Test runs: test_suite_id ", @test_suite_id
-
     render 'test_runs/index'
   end
 

@@ -4,13 +4,13 @@
     <div class="inner">
       <div class="mainborder" align="center">
         <p class="border">Regression test charts</p>
-        <img src="<%= @regression_last_build_chart.to_url %>"/>
-        <img src="<%= @regression_last_10build_chart.to_url %>"/>
-        <img src="<%= @regression_last_10test_runs_graph.to_url %>"/>
+        <img src="<%= @regression_last_build_chart.to_url if !@regression_last_build_chart.nil? %>"/>
+        <img src="<%= @regression_last_10build_chart.to_url if !@regression_last_10build_chart.nil? %>"/>
+        <img src="<%= @regression_last_10test_runs_graph.to_url if !@regression_last_10test_runs_graph.nil? %>"/>
         <p class="border">Smoke test charts</p>
-        <img src="<%= @smoke_last_build_chart.to_url %>"/>
-        <img src="<%= @smoke_last_10build_chart.to_url %>"/>
-        <img src="<%= @smoke_last_10test_runs_graph.to_url %>"/>
+        <img src="<%= @smoke_last_build_chart.to_url if !@smoke_last_build_chart.nil? %>"/>
+        <img src="<%= @smoke_last_10build_chart.to_url if !@smoke_last_10build_chart.nil? %>"/>
+        <img src="<%= @smoke_last_10test_runs_graph.to_url if !@smoke_last_10test_runs_graph.nil? %>"/>
       </div>
     </div>
   </div>

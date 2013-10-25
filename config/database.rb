@@ -9,7 +9,7 @@
      :pool      => 5,
      :username  => 'postgres',
      :password  => 'password',
-     :host      => 'backup.r8network.com'
+     :host      => 'localhost'
    }
 
 

@@ -97,6 +97,9 @@ ul.list li .item .avatar{float:left;margin:0 5px 5px 0;width:30px;height:30px;}
 /* borders */
 .mainborder{border: 2px solid;border-color:#007BA7;margin-right:230px;margin-left:230px;}
 .border{border: 2px solid; border-color:#007BA7; background-color:#007BA7; color:white; font-size: 140%; margin-top: 0px;}
+/*.pie{max-width: 480}*/
+.scaling-graph{max-width: 100%; height: auto}
+.scaling-pie{}
 
 /* pagination style */
 .digg_pagination {

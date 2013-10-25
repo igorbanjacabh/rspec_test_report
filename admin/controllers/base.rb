@@ -58,7 +58,7 @@ def draw_last_10_builds_success_rate(test_suite_name)
   @last_10test_runs = TestRun.where(:test_suites_id => id).order("updated_at DESC").limit(10)
 
   success_rate_array = Array.new()
-  build_namas_array = Array.new()
+  build_names_array = Array.new()
 
   @last_10test_runs.each do |test_run|
     if test_run.example_count.nil?
@@ -66,12 +66,12 @@ def draw_last_10_builds_success_rate(test_suite_name)
     else
       success_rate_array << ((test_run.example_count.to_i - test_run.failure_count.to_i).to_f/test_run.example_count.to_f)*100
     end
-    build_namas_array << test_run.build
+    build_names_array << test_run.build
   end
 
   #Build string that represents list of graph dots that will be visible
   graph_dots = ""
-  build_namas_array.each_with_index do |build, i|
+  build_names_array.each_with_index do |build, i|
     graph_dots << "o,3399CC,0,#{i}.0,10.0|"
   end
   graph_dots.chop!
@@ -83,7 +83,7 @@ def draw_last_10_builds_success_rate(test_suite_name)
     a.range = 0..100
   end
   @last_10test_runs_graph.axis(:bottom) do |a| 
-    a.labels = build_namas_array.reverse
+    a.labels = build_names_array.reverse
   end
   @last_10test_runs_graph.width = 963
   @last_10test_runs_graph.height = 250

@@ -4,15 +4,75 @@
     <div class="inner">
       <div class="mainborder" align="center">
         <p class="border">Regression test charts</p>
-        <img src="<%= @regression_last_build_chart.to_url if !@regression_last_build_chart.nil? %>"/>
-        <img src="<%= @regression_last_10build_chart.to_url if !@regression_last_10build_chart.nil? %>"/>
-        <img src="<%= @regression_last_10test_runs_graph.to_url if !@regression_last_10test_runs_graph.nil? %>"/>
+        <img class="scaling-pie" src="<%= @regression_last_build_chart.to_url if !@regression_last_build_chart.nil? %>"/>
+        <img class="scaling-pie" src="<%= @regression_last_10build_chart.to_url if !@regression_last_10build_chart.nil? %>"/>  
+        <img class="scaling-graph" src="<%= @regression_last_10test_runs_graph.to_url if !@regression_last_10test_runs_graph.nil? %>"/>
         <p class="border">Smoke test charts</p>
-        <img src="<%= @smoke_last_build_chart.to_url if !@smoke_last_build_chart.nil? %>"/>
-        <img src="<%= @smoke_last_10build_chart.to_url if !@smoke_last_10build_chart.nil? %>"/>
-        <img src="<%= @smoke_last_10test_runs_graph.to_url if !@smoke_last_10test_runs_graph.nil? %>"/>
+        <img class="scaling-pie" src="<%= @smoke_last_build_chart.to_url if !@smoke_last_build_chart.nil? %>"/>
+        <img class="scaling-pie" src="<%= @smoke_last_10build_chart.to_url if !@smoke_last_10build_chart.nil? %>"/>
+        <img class="scaling-graph" src="<%= @smoke_last_10test_runs_graph.to_url if !@smoke_last_10test_runs_graph.nil? %>"/>
       </div>
     </div>
   </div>
 </div>
+
 <% content_for :sidebar, partial("base/sidebar") %>
+
+<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" %>
+<% content_for :javascript %>
+<script type='text/javascript'>
+  $(function() {
+    var getHeight = function($elem) {
+      return $elem.innerHeight();
+    },
+    getWidth = function($elem) {
+      return $elem.innerWidth();
+    }
+
+    var pieOriginalHeight = getHeight($('.scaling-pie').first());
+    var pieOriginalWidth = getWidth($('.scaling-pie').first());
+
+    var mainborderOriginalHeight = getHeight($('.mainborder').first());
+    var mainborderOriginalWidth = getWidth($('.mainborder').first());
+    
+    $(window).resize(function() {
+      resizeScreen();
+    });
+
+    var resizeScreen = function() {
+      var mainborderCurrentHeight = getHeight($('.mainborder').first());
+      var mainborderCurrentWidth = getWidth($('.mainborder').first());
+
+      var mainborderHeightRatio = parseFloat(mainborderOriginalHeight / mainborderCurrentHeight);
+      var mainborderWidthRatio = parseFloat(mainborderOriginalWidth / mainborderCurrentWidth);
+
+      $('.scaling-pie').each(function() {
+        var pieMaxWidth = pieOriginalWidth;
+        var pieMaxHeight = pieOriginalHeight;
+        var ratio = 0;
+
+        var width = pieMaxWidth/mainborderWidthRatio;
+        var height = pieMaxHeight/mainborderHeightRatio;
+
+        if (width < pieMaxWidth) {
+          ratio = pieMaxWidth/width;
+          $(this).css("width", pieMaxWidth);
+          $(this).css("height", height * ratio);
+          height = height * ratio;
+        }
+
+        if(height > pieMaxHeight){
+          ratio = pieMaxHeight / height;
+          $(this).css("height", pieMaxHeight);
+          $(this).css("width", width * ratio);
+          width = width * ratio;
+        }
+
+        if (width == pieMaxWidth && height == pieMaxHeight) {
+          $(this).css("height", pieMaxHeight);
+          $(this).css("width", pieMaxWidth);
+        }
+      });
+    }
+  });
+</script>

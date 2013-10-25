@@ -12,16 +12,16 @@ def draw_last_test_run(test_suite_name)
       @last_build_chart.title = "Sum for last build result"
       @last_build_chart.colors = [:red, :yellow, :green]
       @last_build_chart.legend = ["Failed: #{test_run.failure_count}", "Pending: #{test_run.pending_count}", "Pass: #{success_count}"]
-      @last_build_chart.width = 480
-      @last_build_chart.height = 250
+      @last_build_chart.width = 450
+      @last_build_chart.height = 230
       @last_build_chart.entire_background = "F7F7F8"
     else
       @last_build_chart = GChart.pie3d :data => [100, 100, 100]
       @last_build_chart.title = "Sum for last build result"
       @last_build_chart.colors = [:red, :yellow, :green]
       @last_build_chart.legend = ["Failed: N/A", "Pending: N/A", "Pass: N/A"]
-      @last_build_chart.width = 480
-      @last_build_chart.height = 250
+      @last_build_chart.width = 450
+      @last_build_chart.height = 230
       @last_build_chart.entire_background = "F7F7F8"
     end
   end
@@ -46,8 +46,8 @@ def draw_last_10_test_runs(test_suite_name)
   @last_10build_chart.title = "Sum of last 10 build results"
   @last_10build_chart.colors = [:red, :yellow, :green]
   @last_10build_chart.legend = ["Failed: #{failure_count}", "Pending: #{pending_count}", "Pass: #{success_count}"]
-  @last_10build_chart.width = 480
-  @last_10build_chart.height = 250
+  @last_10build_chart.width = 450
+  @last_10build_chart.height = 230
   @last_10build_chart.entire_background = "F7F7F8"
   return @last_10build_chart
 end

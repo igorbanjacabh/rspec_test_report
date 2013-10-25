@@ -95,7 +95,7 @@ ul.list li .item .avatar{float:left;margin:0 5px 5px 0;width:30px;height:30px;}
 .code{font-family: Courier, 'Courier New', monospace;color:#36393D;}
 
 /* borders */
-.mainborder{border: 2px solid;border-color:#007BA7;margin-right:230px;margin-left:230px;}
+.mainborder{border: 2px solid;border-color:#007BA7;margin-right:210px;margin-left:210px;}
 .border{border: 2px solid; border-color:#007BA7; background-color:#007BA7; color:white; font-size: 140%; margin-top: 0px;}
 /*.pie{max-width: 480}*/
 .scaling-graph{max-width: 100%; height: auto}

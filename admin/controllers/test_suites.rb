@@ -1,7 +1,14 @@
+require 'yaml'
+
 Admin.controllers :test_suites do
 
   get :index do
-    @test_suites = TestSuite.all
+    #Load test suite type name from config.yml
+    @config = YAML.load(File.open('./config/config.yml'))
+    regression_suite_name = @config['test_suites']['regression_suite']
+    smoke_suite_name = @config['test_suites']['smoke_suite']
+
+    @test_suites = TestSuite.where("suite = ? or suite = ?", regression_suite, smoke_suite_name)
     render 'test_suites/index'
   end
 

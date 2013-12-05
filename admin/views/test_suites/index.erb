@@ -12,13 +12,13 @@
         <tr>
           <th><!--<%= mat(:test_suite, :id) %></th>-->
           <th><%= mat(:test_suite, :suite) %></th>
-          <th><%= mat(:test_suite, "last executed") %></th>
+          <!--<th><%= mat(:test_suite, "last executed") %></th>-->
         </tr>
         <% @test_suites.each do |test_suite| %>
         <tr>
           <td><!--<%= test_suite.id %></td>-->
           <td><%= link_to pat("#{test_suite.suite}"), url(:test_runs, :index, {:test_suite => test_suite.suite, :test_suite_id => test_suite.id}) %></td>  
-          <td><%= test_suite.updated_at %></td>
+          <!--<td><%= test_suite.updated_at %></td>-->
           <!--<td class="last">
             <%= button_to pat(:edit), url(:test_suites, :edit, :id => test_suite.id), :method => :get, :class => :button_to %> |
             <%= button_to pat(:delete), url(:test_suites, :destroy, :id => test_suite.id), :method => :delete, :class => :button_to, :onsubmit => "return confirm('#{pat(:confirm)}')" %>

@@ -39,8 +39,4 @@ class Admin < Padrino::Application
     #role.project_module :test_cases, '/test_cases'    
     #role.project_module :accounts, '/accounts'
   end
-
-puts "-----------------------"
-  puts access_control.inspect
-  puts "-----------------------"
 end

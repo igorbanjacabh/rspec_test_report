@@ -25,11 +25,11 @@ class Admin < Padrino::Application
   set :admin_model, 'Account'
   set :login_page, "/admin/sessions/new"
 
-  enable  :sessions
+  disable  :sessions
   disable :store_location
 
   access_control.roles_for :any do |role|
-    role.protect "/"
+    role.allow "/"
     role.allow "/sessions"
   end
 
@@ -39,4 +39,8 @@ class Admin < Padrino::Application
     #role.project_module :test_cases, '/test_cases'    
     #role.project_module :accounts, '/accounts'
   end
+
+puts "-----------------------"
+  puts access_control.inspect
+  puts "-----------------------"
 end

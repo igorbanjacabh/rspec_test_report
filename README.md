@@ -13,6 +13,4 @@ Following steps needed fo installation:
 
 4. Run padrino rake ar:migrate to create accounts db table from existing model
 
-5. Run padrino rake seed to enter email/password for account that will be used for access to web app
-
-6. Run padrino start from the rspec_test_report directory to start the application 
+5. Run padrino start from the rspec_test_report directory to start the application 

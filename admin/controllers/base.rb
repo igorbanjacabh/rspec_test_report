@@ -85,7 +85,8 @@ def draw_last_10_builds_success_rate(test_suite_name)
     if test_run.example_count.nil?
       success_rate_array << 0
     else
-      success_rate_array << ((test_run.example_count.to_i - test_run.failure_count.to_i).to_f/test_run.example_count.to_f)*100
+      success_rate = ((test_run.example_count.to_i - test_run.failure_count.to_i).to_f/test_run.example_count.to_f)*100
+      success_rate_array << success_rate if !success_rate.nan?
     end
     build_names_array << test_run.build
   end

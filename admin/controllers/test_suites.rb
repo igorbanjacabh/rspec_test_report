@@ -8,7 +8,9 @@ Admin.controllers :test_suites do
     regression_suite_name = @config['test_suites']['regression_suite']
     smoke_suite_name = @config['test_suites']['smoke_suite']
 
-    @test_suites = TestSuite.where("suite = ? or suite = ?", regression_suite_name, smoke_suite_name)
+    #Disabled for now until we standardize which type of suites we have
+    #@test_suites = TestSuite.where("suite = ? or suite = ?", regression_suite_name, smoke_suite_name)
+    @test_suites = TestSuite.all
     render 'test_suites/index'
   end
 

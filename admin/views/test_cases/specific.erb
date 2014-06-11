@@ -17,26 +17,30 @@
           <th><%= mat(:test_case, "Expected result") %></th>
           <th><%= mat(:test_case, :execution_result) %></th>
           <th><%= mat(:test_case, :exception) %></th>
-          <th><%= mat(:test_case, :pending_message) %></th>
+          <!--<th><%= mat(:test_case, :pending_message) %></th>
           <th><%= mat(:test_case, :backtrace) %></th>
-          <th><%= mat(:test_case, :metadata) %></th>
+          <th><%= mat(:test_case, :metadata) %></th>-->
           <th><%= mat(:test_case, :duration) %></th>          
         </tr>
         <% @test_cases.each do |test_case| %>
         <% @cell_color = "#33CC33" if test_case.execution_result.include? "passed" %>
         <% @cell_color = "#EB3333" if test_case.execution_result.include? "failed" %>
-        <% code_snippet = "Show code snippet" if test_case.execution_result.include? "failed" %>
+        <% Exception = "Show exception" if test_case.execution_result.include? "failed" %>
+        <!--<% Exception = "" if test_case.execution_result.include? "passed" %>-->
+        <% Exception = "" if test_case.exception.blank? %>
         <% @formatted_duration = sprintf("%.2f", test_case.duration.to_f) %>
         <tr>
           <td class="first">
           <td><%= test_case.context %></td>
           <td><%= test_case.description %></td>
           <td bgcolor=<%= @cell_color %>><%= test_case.execution_result %></td>
-          <td><%= test_case.exception %></td>
-          <td><%= test_case.pending_message %></td>
-          <td><%= test_case.backtrace %></td>
-          <td><a href="javascript:void(0)" data-value='<%= test_case.metadata %>' class="stacktrace"><%= code_snippet %></a>
+
+          <!--<td><%= test_case.exception %></td>-->
+
+          <td><a href="javascript:void(0)" data-value='<%= test_case.exception %>' class="stacktrace"><%= Exception %></a>
           </td>
+          <!--<td><%= test_case.pending_message %></td>
+          <td><%= test_case.backtrace %></td>-->
           <td><%= @formatted_duration + "s" %></td>
         </tr>
         <% end %>
@@ -47,7 +51,7 @@
     </div>
   </div>
 </div>
-<div class="dialog-message" title="Code snippet" style="display:none;">
+<div class="dialog-message" title="Exception" style="display:none;">
 </div>
 
 <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" %>
@@ -58,11 +62,14 @@
     $(".dialog-message").dialog({
       modal: true,
       buttons: {
-        Ok: function() {
+        OK: function() {
           $( this ).dialog( "close" );
         }
       },
-      minWidth: 1100,
+      minWidth: 500,
+      maxWidth: 1000,
+      minHeight: 300,
+      maxHeight: 300,
       autoOpen: false
       });
 

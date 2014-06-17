@@ -36,7 +36,7 @@
 
           <!--<td><%= test_case.exception %></td>-->
 
-          <td><a  href="javascript:void(0)" data-value= "<%="Exception: "%><%==(test_case.exception)%><br /><br /><%="Backtrace: "%><%==(test_case.backtrace)%>" class="stacktrace"><%= Exception %></a>
+          <td><a  href="javascript:void(0)" data-value= "<%="Exception: "%><%==(test_case.exception)%><br /><br /><%="Backtrace: " unless test_case.backtrace.blank?%><%==(test_case.backtrace)%>" class="stacktrace"><%= Exception %></a>
           </td>
           <!--<td><%= test_case.pending_message %></td>-->
           <!--<td><%= test_case.backtrace %></td>-->

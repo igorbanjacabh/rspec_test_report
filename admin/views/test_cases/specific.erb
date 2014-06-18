@@ -18,15 +18,15 @@
           <th><%= mat(:test_case, :execution_result) %></th>
           <th><%= mat(:test_case, :exception) %></th>
           <!--<th><%= mat(:test_case, :pending_message) %></th>>-->
-          <th><%= mat(:test_case, :backtrace) %></th>
+          <!--<th><%= mat(:test_case, :backtrace) %></th>-->
           <!--<<th><%= mat(:test_case, :metadata) %></th>-->
           <th><%= mat(:test_case, :duration) %></th>          
         </tr>
         <% @test_cases.each do |test_case| %>
         <% @cell_color = "#33CC33" if test_case.execution_result.include? "passed" %>
         <% @cell_color = "#EB3333" if test_case.execution_result.include? "failed" %>
-        <% Exception = "Show exception" if test_case.execution_result.include? "failed" %>
-        <% Exception = "" if test_case.exception.blank? && test_case.backtrace.blank? %>
+        <% exception = "Show exception" if test_case.execution_result.include? "failed" %>
+        <% exception = "" if test_case.exception.blank? && test_case.backtrace.blank? %>
         <% @formatted_duration = sprintf("%.2f", test_case.duration.to_f) %>
         <tr>
           <td class="first">

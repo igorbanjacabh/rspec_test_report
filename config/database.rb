@@ -5,7 +5,7 @@
      :adapter   => 'postgresql',
      :encoding  => 'utf8',
      :reconnect => true,
-     :database  => 'rspec_test_report',
+     :database  => 'rspec',
      :pool      => 5,
      :username  => 'postgres',
      :password  => 'password',

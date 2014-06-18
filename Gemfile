@@ -1,4 +1,4 @@
-source :rubygems
+source 'http://rubygems.org'
 
 # Server requirements
 # gem 'thin' # or mongrel
@@ -12,7 +12,7 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'sass'
 gem 'erubis', "~> 2.7.0"
-gem 'activerecord', :require => "active_record"
+gem 'activerecord', :require =>'active_record'
 #gem 'sqlite3'
 gem 'pg'
 
@@ -22,15 +22,7 @@ gem 'rspec', :group => "test"
 gem 'rack-test', :group => "test", :require => "rack/test"
 
 # Padrino Stable Gem
-gem 'padrino', '0.10.7'
-
-# Or Padrino Edge
-# gem 'padrino', :git => 'git://github.com/padrino/padrino-framework.git'
-
-# Or Individual Gems
-# %w(core gen helpers cache mailer admin).each do |g|
-#   gem 'padrino-' + g, '0.10.7'
-# end
+gem 'padrino'
 
 # Pagination gem
 gem 'will_paginate'
